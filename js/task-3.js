@@ -1,36 +1,33 @@
-// Доповни об’єкт profile методами для роботи з його властивостями.
+class StringBuilder {
+  #value
+ constructor (initialValue) {
+    this.#value = initialValue
+  }
 
-// Метод changeUsername(newName) повинен приймати рядок(нове ім’я) в параметр newName та змінювати значення властивості username на нове. 
-// Нічого не повертає.
-// Метод updatePlayTime(hours) повинен приймати число(кількість годин) у параметр hours та збільшити на нього значення властивості playTime. 
-// Нічого не повертає.
-// Метод getInfo() має повертати рядок формату < Username > has < amount > active hours!, де < Username > — це ім’я профілю,
-// а < amount > — кількість ігрових годин.
+  getValue() {
+  return  this.#value
+  }
 
-const profile = {
-    username: "Jacob",
-  playTime: 300,
+  padEnd(str) {
+    this.#value += str
+  }
 
+  padStart(str) {
+    this.#value = str + this.#value
+  }
 
-    changeUsername(newName) {
-    this.username = newName
-}, 
+  padBoth(str) {
+    this.#value = str + this.#value
+    this.#value += str
+  }
 
-    updatePlayTime(hours) {
-    this.playTime += hours
-    },
-    
-    
-    getInfo() {
-       return `${this.username} has ${this.playTime} active hours!` 
-    }
-};
+}
+const builder = new StringBuilder(".");
 
-
-console.log(profile.getInfo()); // "Jacob has 300 active hours!"
-
-profile.changeUsername("Marco");
-console.log(profile.getInfo()); // "Marco has 300 active hours!"
-
-profile.updatePlayTime(20);
-console.log(profile.getInfo()); // "Marco has 320 active hours!"
+console.log(builder.getValue()); // "."
+builder.padStart("^");
+console.log(builder.getValue()); // "^."
+builder.padEnd("^");
+console.log(builder.getValue()); // "^.^"
+builder.padBoth("=");
+console.log(builder.getValue()); // "=^.^="
